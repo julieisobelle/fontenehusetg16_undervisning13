@@ -11,10 +11,40 @@ img {
   max-width: 100%;
 }
 
+/* -- BODY -- */
+.body {
+  display: grid;
+  grid-template-areas:
+    "header   header   header"
+    "aside    main     main"
+    "aside    footer   footer"
+  ;
+}
+
 /* -- HEADER -- */
 .header {
+  /* Flex metoden */
+  /*display: flex;
+  justify-content: space-between;*/
+
+  /* Grid area metoden */
+  display: grid;
+  grid-template-areas: "logo    headerNav";
+  justify-content: space-between;
+
+  /* Grid row metoden */
+  /*display: grid;
+  grid-template-rows: 50px 50px;
+  grid-template-columns: 1fr;
+  row-gap: 50px;*/
+
+  grid-area: header;
   padding: 0 8px;
   border-bottom: 1px solid #bb010bff;
+}
+
+.headerNav {
+  grid-area: headerNav;
 }
 
 .logo {
@@ -25,12 +55,15 @@ img {
   padding: 10px;
   margin: 10px;
   width: 40px;
+
+  grid-area: logo;
 }
 
 .navList {
   list-style-type: none;
   padding-inline-start: 0;
-  gap: 16px;
+  display: flex;
+  gap: 8px;
 }
 
 .navLink {
@@ -38,12 +71,67 @@ img {
 }
 
 /* -- MAIN -- */
+.main {
+  grid-area: main;
+}
+
+section {
+  height: 100vh;
+}
+
+.about {
+  display: grid;
+  grid-template-areas:
+    "aboutImg aboutHeading"
+    "aboutImg aboutText"
+}
+
+.aboutImg {
+  grid-area: aboutImg;
+}
+
+.aboutHeading {
+  grid-area: aboutHeading;
+}
+
+.aboutText {
+  grid-area: aboutText;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 100px 100px 100px */
+
+  grid-template-areas: "pCard1    pCard2    pCard3";
+}
+
+.pCard1 {
+  grid-area: pCard1;
+}
+
+.pCard2 {
+  grid-area: pCard2;
+}
+
+.pCard3 {
+  grid-area: pCard3;
+}
 
 /* -- FOOTER -- */
 .footer {
+  grid-area: footer;
   border-top: 1px solid black;
 }
 
 /* -- MEDIA -- */
 @media (max-width: 769px) {
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 426px) {
+  .projects {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
